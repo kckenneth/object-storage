@@ -89,6 +89,24 @@ real command, change the API_KEY
 ```
 # swift -A https://sjc01.objectstorage.softlayer.net/auth/v1.0/ -U SLOS1729689-2:SL1729689 -K API_KEY list
 ```
+
+### Manage the object storage by curl
+
+```
+# curl -i -H "X-Auth-User: SLOS1729689-2:USERID " -H "X-Auth-Key: API_KEY " https://dal05.objectstorage.softlayer.net/auth/v1.0
+
+HTTP/1.1 200 OK
+Content-Length: 1536
+X-Auth-Token-Expires: 24799
+X-Auth-Token: AUTH_tk3948b783e16c4e48a3d726a76b7ff60b
+X-Storage-Token: AUTH_tk3948b783e16c4e48a3d726a76b7ff60b
+X-Storage-Url: https://dal05.objectstorage.softlayer.net/v1/AUTH_b7619532-8c35-4938-bf47-773773206815
+Content-Type: application/json
+X-Trans-Id: txa992607906754a01b6079-005bc63145
+Date: Tue, 16 Oct 2018 18:43:18 GMT
+```
+
+
 # Jupyter Notebook
 
 Since I'm going to work in jupyter notebook, I'll install the notebook.
