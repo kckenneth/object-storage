@@ -96,7 +96,8 @@ Since I'm going to work in jupyter notebook, I'll install the notebook.
 ```
 # apt-get update && apt-get upgrade
 # apt install python3-pip
-# pip install jupyter
+# pip3 install jupyter
+# pip3 install softlayer-object-storage
 ```
 
 ### Setting up Jupyter Notebook
@@ -107,7 +108,6 @@ You need to set up the configuration file for jupyter notebook to work in your b
 # jupyter notebook --generate-config
 
 Writing default config to: /root/.jupyter/jupyter_notebook_config.py
-
 ```
 Modifying the configuration file
 ```
@@ -130,5 +130,6 @@ Go to your browser, launch a new Python3 notebook
 ```
 50.23.91.124:8123/?token ....
 ```
-
+------------
+## Utilization of Object Storage done in Jupyter Notebook
 
