@@ -92,6 +92,7 @@ real command, change the API_KEY
 
 ### Manage the object storage by curl
 
+To get the X-Auth-Token and X-Storage-URL (valid for 24 hours)
 ```
 # curl -i -H "X-Auth-User: SLOS1729689-2:USERID " -H "X-Auth-Key: API_KEY " https://dal05.objectstorage.softlayer.net/auth/v1.0
 
@@ -106,6 +107,26 @@ X-Trans-Id: txa992607906754a01b6079-005bc63145
 Date: Tue, 16 Oct 2018 18:43:18 GMT
 ```
 
+To get the list of the container 
+```
+# curl -i -H "X-Auth-Token: AUTH_tk3948b783e16c4e48a3d726a76b7ff60b" https://dal05.objectstorage.softlayer.net/v1/AUTH_b7619532-8c35-4938-bf47-773773206815
+
+HTTP/1.1 200 OK
+Content-Length: 6
+X-Account-Meta-Nas-Id: 53336359
+X-Account-Object-Count: 0
+X-Account-Storage-Policy-Standard-Container-Count: 1
+X-Timestamp: 1539653747.99715
+X-Account-Meta-Cdn-Id: 99655
+X-Account-Storage-Policy-Standard-Object-Count: 0
+X-Account-Bytes-Used: 0
+X-Account-Container-Count: 1
+Content-Type: text/plain; charset=utf-8
+Accept-Ranges: bytes
+X-Account-Storage-Policy-Standard-Bytes-Used: 0
+X-Trans-Id: tx400e4333a71d44e0a7a50-005bc633ee
+Date: Tue, 16 Oct 2018 18:54:38 GMT
+```
 
 # Jupyter Notebook
 
