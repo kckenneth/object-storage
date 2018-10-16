@@ -121,14 +121,14 @@ c.NotebookApp.ip = '*'
 c.NotebookApp.open_browser = False
 c.NotebookApp.port = 8123
 ```
-Launch jupyter-notebook
+Launch jupyter-notebook, you somehow need to bind with the IP
 ```
-# jupyter-notebook
+# jupyter-notebook --ip=50.23.91.124 --allow-root
 ```
 
 Go to your browser 
 ```
-50.97.252.101:8123/?token ....
+50.23.91.124:8123/?token ....
 ```
 
 
