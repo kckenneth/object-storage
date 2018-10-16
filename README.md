@@ -126,7 +126,7 @@ Launch jupyter-notebook, you somehow need to bind with the IP
 # jupyter-notebook --ip=50.23.91.124 --allow-root
 ```
 
-Go to your browser 
+Go to your browser, launch a new Python3 notebook
 ```
 50.23.91.124:8123/?token ....
 ```
