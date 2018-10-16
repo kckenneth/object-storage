@@ -29,3 +29,64 @@ Try something that you know will result in unsuccessful file transfer so as to l
 tee will generate `softlayer.xxxxxxxxx.log`. You can observe what the log file recorded. 
 
 # Part II. Object Storage 
+
+Check if you have an object storage in your softlayer account. Replace USERID:API_KEY respectively. If you have the object storage, you'd see Swift object storage. If you don't have yet, tee (softlayer.xxxxxxx.log) will generate nothing. 
+```
+# curl --user USERID:API_KEY https://api.softlayer.com/rest/v3.1/SoftLayer_Account/getHubNetworkStorage | tee softlayer.$(date +%s).log | jq '.[] | select(.vendorName == "Swift") | del (.properties)'  
+```
+#### How to order object storage by REST API,  
+https://softlayer.github.io/blog/waelriac/managing-softlayer-object-storage-through-rest-apis/
+
+To get the price item id for your softlayer account, replace USERID:API_KEY respectively. 
+```
+# curl -s --user USERID:API_KEY https://api.softlayer.com/rest/v3.1/SoftLayer_Product_Package/0/getItems | tee softlayer.$(date +%s).log | jq '.[] | select(.keyName == "OBJECT_STORAGE_PAY_AS_YOU_GO") | .prices[0].id'
+
+16984
+```
+To order with the price item id, 
+```
+# curl --user USERID:API_KEY https://api.softlayer.com/rest/v3.1/SoftLayer_Product_Order/placeOrder -X POST -d '{"parameters" : [{"complexType": "SoftLayer_Container_Product_Order_Network_Storage_Hub", "quantity": 1, "packageId": 0, "prices": [{ "id": 16984}]}]}' | tee softlayer.$(date +%s).log | jq '{"orderId": .orderId, "status": .placedOrder.status, "location": .orderDetails.locationObject.name}'
+
+{
+  "orderId": 30204687,
+  "status": "PENDING_AUTO_APPROVAL",
+  "location": "lon05"
+}
+```
+Checking if the object storage is complete
+```
+# curl --user USERID:API_KEY https://api.softlayer.com/rest/v3.1/SoftLayer_Account/getHubNetworkStorage | tee softlayer.$(date +%s).log | jq '.[] | select(.vendorName == "Swift") | del (.properties)'  
+
+{
+  "accountId": 1729689,
+  "capacityGb": 0,
+  "createDate": "2018-10-15T21:35:40-04:00",
+  "guestId": null,
+  "hardwareId": null,
+  "hostId": null,
+  "id": 53336359,
+  "nasType": "HUB",
+  "password": "",
+  "serviceProviderId": 1,
+  "storageTypeId": "15",
+  "upgradableFlag": true,
+  "username": "SLOS1729689-2",
+  "serviceResourceBackendIpAddress": "https://dal05.objectstorage.service.networklayer.com/auth/v1.0/",
+  "serviceResourceName": "OBJECT_STORAGE_DAL05",
+  "vendorName": "Swift"
+}
+```
+To manage the containers in the object storage, you can simply do by swift utility. 
+```
+# pip install python-swiftclient
+# swift -A https://SL_DATA_CENTER_ID.objectstorage.softlayer.net/auth/v1.0/ -U USERNAME:ACCOUNT-ID -K API_KEY list
+```
+- SL_DATA_CENTER_ID = sjc01  
+- USERNAME = object storage username, SLOS1729689-2
+- ACCOUNT-ID = softlayer account username associated with API
+
+real command, change the API_KEY
+```
+# swift -A https://sjc01.objectstorage.softlayer.net/auth/v1.0/ -U SLOS1729689-2:SL1729689 -K API_KEY list
+```
+
