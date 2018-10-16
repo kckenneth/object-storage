@@ -131,12 +131,4 @@ Go to your browser
 50.97.252.101:8123/?token ....
 ```
 
-### Setting up Pyspark in Jupyter Notebook
 
-I'd like to launch pyspark in jupyter notebook. There are two options to use `pyspark` in jupyter notebook.  
-- Option1: When you'd call `# pyspark`, it will automatically launch jupyter-notebook and you can use `pyspark` in jupyter-notebook. It's fast.  
-- Option2: You launch `# jupyter-notebook` and `import findspark` library. This is good when you want to work in different IDE. You just need to do `# pip install findspark` for later use in the jupyter notebook. 
-
-I played around with the option1 but didn't succeed with the moby10b.txt. I detailed the procedure for future reference in optional installation below. So I tried with option2 and it worked. So Here I will continue with the option2. Checking the pyspark from earlier installation. 
-
-https://github.com/kckenneth/Spark/blob/master/pyspark_setup.md
