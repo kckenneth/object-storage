@@ -107,7 +107,7 @@ X-Trans-Id: txa992607906754a01b6079-005bc63145
 Date: Tue, 16 Oct 2018 18:43:18 GMT
 ```
 
-To get the list of the container 
+### To get the list of the container 
 ```
 # curl -i -H "X-Auth-Token: AUTH_tk3948b783e16c4e48a3d726a76b7ff60b" https://dal05.objectstorage.softlayer.net/v1/AUTH_b7619532-8c35-4938-bf47-773773206815
 
@@ -131,6 +131,8 @@ week7
 ```
 This list the container named 'week7'. 
 
+### Create a new container
+
 If you want to create a new container, just use the 'list the container' command, but with `-XPUT` flag and `container name` at the end of the X-Storage-url. I'm creating another container `mybucket`. I'm using the X-Auth-Token and X-Storage-Url because they will expire after 24 hours. 
 ```
 # curl -i -XPUT -H "X-Auth-Token: AUTH_tk3948b783e16c4e48a3d726a76b7ff60b" https://dal05.objectstorage.softlayer.net/v1/AUTH_b7619532-8c35-4938-bf47-773773206815/mybucket
@@ -141,7 +143,7 @@ Content-Type: text/html; charset=UTF-8
 X-Trans-Id: tx4b9ac5d7fb5c46c981861-005bc636a7
 Date: Tue, 16 Oct 2018 19:06:15 GMT
 ```
-To check again how many containers I have. 
+### Check again how many containers I have. 
 ```
 # curl -i -H "X-Auth-Token: AUTH_tk3948b783e16c4e48a3d726a76b7ff60b" https://dal05.objectstorage.softlayer.net/v1/AUTH_b7619532-8c35-4938-bf47-773773206815
 
