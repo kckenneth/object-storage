@@ -90,9 +90,9 @@ real command, change the API_KEY
 # swift -A https://sjc01.objectstorage.softlayer.net/auth/v1.0/ -U SLOS1729689-2:SL1729689 -K API_KEY list
 ```
 
-### Manage the object storage by curl
+## Manage the object storage by curl
 
-To get the X-Auth-Token and X-Storage-URL (valid for 24 hours)
+### 1. To get the X-Auth-Token and X-Storage-URL (valid for 24 hours)
 ```
 # curl -i -H "X-Auth-User: SLOS1729689-2:USERID " -H "X-Auth-Key: API_KEY " https://dal05.objectstorage.softlayer.net/auth/v1.0
 
@@ -107,7 +107,7 @@ X-Trans-Id: txa992607906754a01b6079-005bc63145
 Date: Tue, 16 Oct 2018 18:43:18 GMT
 ```
 
-### To get the list of the container 
+### 2. To get the list of the container 
 ```
 # curl -i -H "X-Auth-Token: AUTH_tk3948b783e16c4e48a3d726a76b7ff60b" https://dal05.objectstorage.softlayer.net/v1/AUTH_b7619532-8c35-4938-bf47-773773206815
 
@@ -131,7 +131,7 @@ week7
 ```
 This list the container named 'week7'. 
 
-### Create a new container
+### 3. Create a new container
 
 If you want to create a new container, just use the 'list the container' command, but with `-XPUT` flag and `container name` at the end of the X-Storage-url. I'm creating another container `mybucket`. I'm using the X-Auth-Token and X-Storage-Url because they will expire after 24 hours. 
 ```
@@ -143,12 +143,20 @@ Content-Type: text/html; charset=UTF-8
 X-Trans-Id: tx4b9ac5d7fb5c46c981861-005bc636a7
 Date: Tue, 16 Oct 2018 19:06:15 GMT
 ```
-### Check again how many containers I have. 
+### 4. Check again how many containers I have. 
 ```
 # curl -i -H "X-Auth-Token: AUTH_tk3948b783e16c4e48a3d726a76b7ff60b" https://dal05.objectstorage.softlayer.net/v1/AUTH_b7619532-8c35-4938-bf47-773773206815
 
 mybucket
 week7
+```
+### 5. Check the content of the container 
+
+You can check the content of the container by appending the X-Storage-Url by the container name. It's like a subfolder. 
+```
+# curl -i -H "X-Auth-Token: AUTH_tk3948b783e16c4e48a3d726a76b7ff60b" https://dal05.objectstorage.softlayer.net/v1/AUTH_b7619532-8c35-4938-bf47-773773206815/week7
+
+bigrams
 ```
 
 
